@@ -1,0 +1,671 @@
+1> What Is OPPS oops is object paradiam language 
+ what are classes -> classes are template without memory they are not real word entity
+classes contain some method 
+
+3> What are 6 pillars of  oops
+ans -> a> Objects
+        b> classes
+        c> encapsulation
+        d> inheritance
+        e> polymorphism
+        f> Abstraction
+
+4> What does class consist of --> a> methods
+                                  b> constructor
+                                  c> fields 
+                                  d> blocks
+                                  e> nested class
+
+
+5> Method --> a> Method is function which belongs to its class and objects;
+              Function can be used by any one
+              b> default access modifier is [ default ]
+
+6> Objects --> a> object is instance of class
+               b> object occupies memory
+               c> object have behaviour(methods)
+
+7> How to create objects
+   a> new keyword;
+   b> newInstance();
+   c> clone()
+   d> deserialization
+   e> factory method
+
+
+ public class animal 
+{
+      public void eat()
+      {
+         System.out.println("I am eating");
+         
+      }
+    
+       public  void main(String[] args) 
+       {
+         System.out.println("HEllO");
+       }
+}
+
+In this case main is also method of animal class but this program will be compiled but not executed
+because it require static main 
+
+What is static main and simple main -->A> for accessing main and eat we have to create an object because there is not memory give so these are not available
+So animal dog = new animal();
+B>
+
+public class animal 
+{
+      public static void eat()s
+      {
+         System.out.println("I am eating");
+         
+      }
+    
+       public  void main(String[] args) 
+       {
+         System.out.println("HEllO");
+       }
+}
+
+What is static doing in case of eat --> In this memory will be provided to eat and we can use
+eat with  name of class animal.eat();
+
+Can we use Main of one function on another ---> Yes because it is method of a class and it can be called with object and with class name if it is not static
+
+
+public class dog 
+{
+   public static void main(String[] args) 
+   {/ 
+       dog jojo = new dog();
+       System.out.println("Looo");
+
+       jojo.main(args);
+   }    
+}
+
+What will happen in above case --> it will go infinite loop but how is it running class calling its own method how is this happening because java run program from  static main only it will not run
+if static main is not present even if there is main this is verry different main and static main is very different because of memory will be given to static 
+ 
+
+      public static void eat()                       
+      {
+         System.out.println("I am eating");
+         help();
+         
+      }
+
+      public  void eat()
+      {
+         System.out.println("I am eating");
+         help();
+         
+      }
+
+Above example are different from each other in case of static eat while giving memory only 
+memory is given to eat but help is there and it is not static
+
+In case of public void eat() we have to create an whole object and memory will be given to all the methods inside that function
+ 
+
+
+
+----------------------------------------- Constructor ----------------------------------------------
+
+1> Constructor -> a> constructor is like method with similar name as class
+               b> constructor does not have any return type even void
+               c> public, protected, default, and private
+
+2> How do we run constructor ? a> by making an object  const obj = new animal();
+                            b> by using new animal();
+
+3> Why do we need constructor --> a> It is used to initialise the object 
+
+
+public class cons 
+{
+    public void hello()
+    {
+         System.out.println("Hello");
+    }
+
+
+       public static void main(String[] args) 
+       {
+            cons obj;
+            obj.hello();
+       }
+}
+
+In above example we have created an object obj but we cannot use obj.hello() because obj does not
+ have memory given to it is just an empty variable of type cons. So Constructor are used to initialize an object;
+
+4> Type of Constructor - a> Default Constructor
+                         b> No argument Constructor (user defined Constructor)
+                         c> Parametrised Constructor
+
+a> Default Constructor -> we do not create any constructor in class but while initializing the object use cons obj = new cons(); Here the compiler automatically creates the default constructor
+
+public class cons 
+{
+    public void hello()
+    {
+         System.out.println("Hello");
+    }
+
+
+       public static void main(String[] args) 
+       {
+            cons obj;
+            obj.hello();
+       }
+}
+
+In this case there is no constructor we have created;
+But when we do this cons obj = new cons();
+
+Here even though we don't have created a constructor but it initialize the object 
+because of default constructor created by the compiler
+
+
+
+b> No argument Constructor  -> created by user  just not created by the compiler
+ 
+ cons()
+{
+   System.out.println("hello"); 
+}
+
+
+3> Parameterized Constructor 
+
+public class cons 
+{
+    public  cons(String s)
+    {
+         System.out.println(s);
+    }
+
+
+       public static void main(String[] args) 
+       {
+            cons obj = new obj(); here this will show error because compile see there is an constructor created who is taking
+                                  string as input but while calling that constructor we are not passing the value
+            cons obj = new obj("hello");
+       }
+}
+
+
+
+
+
+
+
+-------------------------------------- Inheritance ------------------------------------------------
+Inheritance -> to inherit properties of a to b and from a to its child 
+1> (extends) keyword is used in to inherit properties of one class to another
+2> (is a relationship) also known as inheritance
+3> Inheritance is used to achieve reusability 
+4> By default every class inherits object
+5> Object is parent class of all classe
+
+example -> lets assume we two class animal and dog now do wants to become animal so he will inherit
+the properties of the animal so he will extend the animal Now dog is a animal but animal is not a dog
+
+
+4> Types of Inheritance
+   a> single inheritance (a->b)
+   b> Multi level (a->b->c)
+   c> Hierarchal   (a) 
+                  |   |
+                 (b)  (c)
+   
+ 
+  d> Multiple   (b)  (c)
+                  |    |
+                    (a)
+
+                                   java does not support multiple and hybrid (Diamond problem)
+                   (a) 
+                  |   |
+                 (b)  (c)
+   
+   d> Hybrid     (b)  (c)
+                  |    |
+                    (a)
+
+
+Question : Why java do not support multiple and hybrid inheritance ?
+Answer   : Let we have 2 classes A and B both these 2 have a method called show()
+           now we have another class C which extends both A and B when c creates an 
+           object and call obj.show() then compiler gets confuse whoch show() to call
+           this is call [ Ambiguity error ]
+
+ public class diamond extends a, b --> this is not possible
+{
+     public static void main(String[] args) 
+     {
+         diamond obj = new diamond();
+     }
+}
+
+ class a
+ {  
+      void show()
+      {
+           System.out.println("showing a");
+      }    
+ }
+
+ class b extends a
+ {
+      void show()
+      {
+           System.out.println("showing b");
+      }
+ }
+
+
+
+Question : When we extends does child class inherits all the properties ?
+Answer   : No, private and constructor cannot can be inherited by child classes 
+
+Question : Why Inheritance is used ?
+Answer   : Mainly if we want to reuse a specific function 
+
+----------------------------------------------------------------------------------------------------
+Question : How many relationship can be between classes
+Answer   : a> IS a relation
+             when we extends a class is a relation is created
+
+           b> Has a relation 
+             if we use an variable like
+          public class Student
+          {
+        
+                String name;
+                int id;
+
+          }
+Here student has a name
+and student has a id
+
+
+
+
+
+--------------------------------------- Polymorphism -----------------------------------------------
+
+Polymorphism --> many form ( like water) in java it is achieved by method
+
+Question : How many type of polymorphism are there ? 
+
+Answer : There are two type of Polymorphism 
+         1> Compile time :
+            Static
+            achieved by Method overloading
+
+         2> Run time 
+            Dynamic
+            method overriding
+
+Difference between method overloading and method overriding ?
+
+Method overloading                                     Method Overriding
+1> Same name of method                                1>Same name of method
+2> Inside Same Class                                  2> Different class
+3> Different Parameter                                3> Same Parameter
+
+
+Method overloading :
+
+class test
+{
+        void show()
+	{
+              sout(1);	
+ 	} 
+        void show(int x)
+        {
+            sout(2);
+        }
+}
+          
+1> Can we achieve Method overloading by changing the return type of method only ?
+Answer : Yes we can achieve in latest version but not in old vversion
+
+public class test 
+{
+    void show()
+    {
+         System.out.println("Hello");
+    }
+    int show(int x)
+    {
+        return x;
+    }
+   public static void main(String[] args) 
+   {
+       test obj = new test();
+    //    int x = obj.show(2);
+    //    System.out.println(x);
+       obj.show();
+   }  
+}
+
+
+2> Can we overload Main() method ?
+
+Answer : Yes we can override main because main is also an method 
+
+public class test 
+{
+   public static void main(String[] args) 
+   {    
+         test obj = new test();
+         System.out.println(1);
+        obj.main(10);
+   }  
+   public static void main(int x) 
+   {
+      System.out.println("2nd main"); 
+   }
+}
+
+
+
+Question : Will this work ?
+
+public class test 
+{
+    void show()
+    {
+         System.out.println("Hello");
+    }
+    void show(float x)
+    {
+        System.out.println(x);
+    }
+   public static void main(String[] args) 
+   {    
+        test obj = new test();
+        obj.show('a');
+   }  
+}
+
+
+Answer : Yes because of automatic promotion byte->short->char->int->float->long->double
+         but not reverse
+  
+
+Question what in case of object as argument ?:
+
+public class test 
+{
+    void show(Object a)
+    {
+         System.out.println("inside object");
+    }
+    void show(String x)
+    {
+        System.out.println(x);
+    }
+   public static void main(String[] args) 
+   {    
+        test obj = new test();
+        obj.show(1);
+   }  
+}
+
+Answer : In this case it will print inside object because object is main class of all classes
+
+public class test 
+{
+    void show(Object a)
+    {
+         System.out.println("inside object");
+    }
+    void show(String x)
+    {
+        System.out.println(x);
+    }
+   public static void main(String[] args) 
+   {    
+        test obj = new test();
+        obj.show("abc");
+   }  
+}
+
+Answer : In this case  abc will be printed because first child class is given preference
+
+
+Question : In case of Same Level of argument type 
+
+public class test 
+{
+    void show(StringBuffer a)
+
+    {
+         System.out.println("inside string buffer");
+    }
+    void show(String x)
+    {
+        System.out.println(x);
+    }
+   public static void main(String[] args) 
+   {    
+        test obj = new test();
+        obj.show("abc"); --> In this case abc will be printed
+        obj.show(new StringBuffer("abc")); ---> In this case StringBuffer is printed
+        obj.show(null); --> in this case ambiguous will be printed
+   }  
+
+}
+
+
+----------------------------------- Method overriding ---------------------------------------------
+1> Different class
+2> Same name
+3> Same argument --> Same type of arggument
+4> class A should inherits B
+
+
+Question ? Why method overriding is used ?
+Answer   ? lets take an example we create an animal class we know that in animal class every animal eat and speak so we have crated two method eat and speak but we know that the language of every human is not same but we cannot have more than one function having same name with same parameters so when we extends the animal class to Tiger we will change only the speak method having same name same parameter and rest of all method will remain same
+
+
+Question : Does overriding method must have different same return type ?
+Answer  : After 1.4 we have different covarent return type	if parent class method have type Object  child can return string
+
+Question : in case of access modifier we can override it
+Answer : Yes but the child access modifier should be greater than parent
+
+
+public class method 
+{
+    public void show()
+    {
+         System.out.println("I am main");
+         
+    }
+   public static void main(String[] args) 
+   {
+          method obj =  new B();
+          obj.show();
+   }    
+}
+
+class B extends method
+{
+    void show()   -> Cannot reduce the visibility of the inherited method from method
+    {
+    
+        System.out.println("I am inside B");
+    }
+}
+
+
+
+
+------------------------------------- Abstraction --------------------------------------------------
+Abstraction --> we hide internal details of code like for car ==> we only need to know about brake acc, steering wheel, we do not need to know about internal working
+
+Question : In java how many ways can we achieve Abstraction 
+Answer   : 1> By abstract (0---100%) abstraction
+           2> Interfaces (100%) abstraction
+
+
+1> Abstract --> a> In case of abstract it is not necessary we have to only declare a method but we can also  write its definition 
+
+b> if we make a method abstract inside a class that class should be abstract but  if a class is abstract then its method does not require to be abstract 
+
+c> if a class extends and abstract class so it is compulsory for the child class to make the body of all the abstract method 
+
+d> we cannot create object of abstract class --> because if we create an object we call an method but that method cannot be called because it does not have any body
+
+public class test 
+{
+
+   public static void main(String[] args) 
+   {
+       car nano = new car(4);
+       nano.start();
+
+   }    
+}
+
+
+
+abstract class vechicle
+{
+    int tyre;
+    abstract void start();
+}
+
+class car extends vechicle
+{
+   int  tyre;
+     car(int x)
+     {
+        this.tyre = x;
+     }
+
+    void start()
+    {
+       System.out.println("Starting by key" + " having "+ tyre);
+    }
+}
+
+class scooter extends vechicle
+{
+    int tyre;
+    scooter(int x)
+    {
+       this.tyre = x;
+    }
+     void start()
+     {
+        System.out.println("Start by kick havong "+ tyre);
+     }
+}
+
+
+
+
+2> Interfaces : a> It is type of abstraction which tell a class what to do;
+                b> we can achieve multiple inheritance
+                c> all method are public by default
+
+3> When we use want to inherit Interface we use  (implements)
+
+
+public class test implements A,B
+{
+   
+      public void show()
+      {
+           System.out.println("Hello");
+      }
+     public static void main(String[] args) 
+     {
+           test obj  = new test();
+           obj.show();
+     }
+     
+}
+
+interface  A
+{ 
+     void show();
+}
+
+interface B
+{
+      void show();
+}
+
+
+
+
+---------------------------- functional Interfaces  -----------------------------------------------
+
+Functional Interface -> those interfaces who have single abstract method (Sam) 
+like --> Comparable , Runnable
+
+Question : How many ways are to implement functional interface ?
+Answer   : There are three  1> By crating another class which implements
+                            2> by using anonymous class 
+                            3> By using Lambda expression
+
+
+
+Question : Type of Lambda expression ?
+Answer   : There are 4 type of predefined lambda expression
+           1> Predicate
+           2> functional
+           3> Consumer
+           4> Supplier	
+
+
+1> Predicate has a single test method which return Boolean value and take only one parameter
+
+   Interface predicate
+{
+    public Boolean test(); 
+}
+
+
+Predicate<Integer> p = (i, j)->
+{
+    if(i > j)return i; 
+ 
+}
+
+Question : How to join predicates ?
+Answer   : if(p1.and.(p2).test(n);
+
+
+
+2> Functional : Function has sam called apply(); return an single value of any type
+
+
+Funtion<DataType,return type> prd = (i)-> i * i;
+
+Question : How to do function chaining 
+Answer   : By using 1> andThen()
+                    2> compose
+
+
+1> andThen() f1.andThen(f2).apply(i) --> here it will first pass to f1 and then goes to f2
+
+2> compose  --> here first f2 will be executed then f1
+
+
+
+
+
+
+
+
+------------------------------------------------- Stream -------------------------------------------
