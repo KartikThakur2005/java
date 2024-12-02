@@ -665,7 +665,103 @@ Answer   : By using 1> andThen()
 
 
 
+---------------------------------------- Supplier and Consumer -------------------------------------
+
+Consumer --> accept it take input but does not return any thing
+Supplier --> does not take anything it just return value
+
 
 
 
 ------------------------------------------------- Stream -------------------------------------------
+
+Question : What is stream ?
+Answer   : Stream are basically used for  processing data with using collection 
+          So let assume we have a collection of number we do not want to change the source we will
+          make a stream and apply operation according to need like filtering or updating
+
+
+Stream has basically 2 mechanism 1> Filter
+                                 2> Map
+                                 3> count
+
+1> Filter --> By some condition we can filter an data; In filter data may be reduced
+              take predicate method 
+
+2> Map    --> Same data is updated and stored into another collections
+              map take consumer method
+
+3> Count  --> after applying filter we can count how many object we can get
+4> Collect --> for collecting into another collection
+              ans =  list.stream().filter((n)-> n%2==0).collect(Collectors.tolist());
+5> distinct --> remove duplicate
+
+6> for each --> will take consumer function
+
+
+
+
+
+
+----------------------------------------------------------------------------------------------
+
+Red black is fast for insertion
+
+Avl is fast for insertion because of heght
+
+
+
+
+------------------------------------------ MutiThreading ----------------------------------------
+Thread --> Smallest unit of processing
+
+Question ? How many ways we can create an thread ?
+Answer   : We can create thread by two method 1> By implementing runnable
+                                              2> by extending thread class
+By default the thread class has implemented runnable so while creating a thread we do not require 
+both we have to use one of them
+
+Thread class is given by java language which have start method which will initially create the thread by thread scheduler
+
+Question : How to create a thread ?
+Answer   : 1> extend the thread create
+           2> Create the object
+           3> You can create a thread by start methodx 
+
+Question : How many time thread can be used
+Answer   : Thread is used only one time 
+
+Question : How many state does a thread Have
+Answer   : 1> Create
+           2> Run
+           3> non-runnable state  - waiting, sleep
+           4> running
+           5> Dead
+
+Question : How we can create thread in thread class
+Answer   ; 1>  By just extending the class
+           2>  by overriding the run method
+           3> by making an object and calling start method
+
+Question : How we can create thread by the runnable interface
+Answer   : 1> By implementing the runnable interface
+           2> By overriding the run method
+           3> By creating the object p1
+           $> create an object of thread class and pass our p1 to thread class constructor
+
+Question : Which one is better Thread class or Runnable Interface 
+Answer    : Runnable interface is better because lets assume A class wants to inherits b 
+            but also want to create thread this cannot happen through thread class because
+            java do not support multiple inheritance so we will use Runnable Interface 
+
+Question ; to perform multiple task from multiple threads;
+Answer   : By creating multiple classes which extends thread class
+
+Question : How to print current thread name ?
+Answer   : Thread.currentThread.getName();
+
+Question : What is daemon thread ?
+Answer   : Daemon thread are those thread which run on background
+           It provide service to the thread 
+           example : Garbage collector , Signal dispatcher
+             
